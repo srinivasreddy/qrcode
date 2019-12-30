@@ -1,13 +1,9 @@
-import Button from '@material-ui/core/Button';
+import { MyComponent } from './AppBar';
 import React from 'react';
 import { hot } from 'react-hot-loader';
 
 function App() {
-  return (
-    <Button color="primary" variant="contained">
-      Hello World
-    </Button>
-  );
+  return <MyComponent />;
 }
 
 export default hot(module)(App);
