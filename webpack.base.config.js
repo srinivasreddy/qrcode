@@ -1,6 +1,7 @@
-var path = require('path');
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
-var BundleTracker = require('webpack-bundle-tracker');
+const path = require('path');
+
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = [
   {

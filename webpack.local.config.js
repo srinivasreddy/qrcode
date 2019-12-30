@@ -1,9 +1,11 @@
-var autoprefixer = require('autoprefixer');
-var webpack = require('webpack');
-var baseConfig = require('./webpack.base.config');
-var BundleTracker = require('webpack-bundle-tracker');
-var path = require('path');
-var nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+const BundleTracker = require('webpack-bundle-tracker');
+const path = require('path');
+
+const baseConfig = require('./webpack.base.config');
+
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 
 baseConfig[0].mode = 'development';
 baseConfig[1].mode = 'development';
@@ -16,7 +18,7 @@ baseConfig[1].entry = [
   './frontend/js/index',
 ];
 
-baseConfig[0].output['publicPath'] = 'http://localhost:3000/frontend/bundles/';
+baseConfig[0].output.publicPath = 'http://localhost:3000/frontend/bundles/';
 baseConfig[1].output = {
   path: path.resolve('./frontend/bundles/'),
   publicPath: 'http://localhost:3000/frontend/bundles/',

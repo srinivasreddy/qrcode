@@ -8,23 +8,11 @@ module.exports = {
   moduleNameMapper: {
     '^.+\\.(css|scss)$': 'identity-obj-proxy',
   },
-  transformIgnorePatterns: [
-    'node_modules/*',
-  ],
-  modulePaths: [
-    'frontend',
-    'frontend/js',
-    'frontend/js/app',
-  ],
-  snapshotSerializers: [
-    'enzyme-to-json/serializer',
-  ],
-  setupFiles: [
-    './jest-setup.js',
-  ],
-  collectCoverageFrom: [
-    'frontend/js/**/*.{js,jsx}',
-  ],
+  transformIgnorePatterns: ['node_modules/*'],
+  modulePaths: ['frontend', 'frontend/js', 'frontend/js/app'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
+  setupFiles: ['./jest-setup.js'],
+  collectCoverageFrom: ['frontend/js/**/*.{js,jsx}'],
   coveragePathIgnorePatterns: [
     'frontend/js/store.js',
     'frontend/js/index.js',
