@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "import_export",
     "common",
     "users",
+    "QR",
 ]
 
 MIDDLEWARE = [
@@ -104,8 +105,3 @@ WEBPACK_LOADER = {
         "STATS_FILE": base_dir_join("../jquery-webpack-stats.json"),
     },
 }
-
-
-# Sentry
-SENTRY_DSN = config("SENTRY_DSN", default="")
-COMMIT_SHA = config("HEROKU_SLUG_COMMIT", default="")
