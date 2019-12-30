@@ -25,9 +25,6 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 AUTH_PASSWORD_VALIDATORS = []  # allow easy passwords only on local
 
-# Celery
-CELERY_TASK_ALWAYS_EAGER = True
-
 # Email
 INSTALLED_APPS += ("naomi",)
 EMAIL_BACKEND = "naomi.mail.backends.naomi.NaomiBackend"
@@ -49,7 +46,6 @@ LOGGING = {
     },
     "loggers": {
         "": {"handlers": ["console"], "level": "INFO"},
-        "celery": {"handlers": ["console"], "level": "INFO"},
     },
 }
 

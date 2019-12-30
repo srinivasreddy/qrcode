@@ -105,11 +105,6 @@ WEBPACK_LOADER = {
     },
 }
 
-# Celery
-CELERY_ACCEPT_CONTENT = ["json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
-CELERY_ACKS_LATE = True
 
 # Sentry
 SENTRY_DSN = config("SENTRY_DSN", default="")

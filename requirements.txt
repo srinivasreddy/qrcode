@@ -7,9 +7,7 @@
 amqp==2.5.2               # via kombu
 appnope==0.1.0            # via ipython
 backcall==0.1.0           # via ipython
-billiard==3.6.1.0         # via celery
 brotlipy==0.7.0
-celery[redis]==4.4.0
 certifi==2019.11.28       # via sentry-sdk
 cffi==1.13.2              # via brotlipy
 decorator==4.4.1          # via ipython, traitlets
@@ -29,7 +27,6 @@ ipython-genutils==0.2.0   # via traitlets
 ipython==7.11.0
 jdcal==1.4.1              # via openpyxl
 jedi==0.15.2              # via ipython
-kombu==4.6.7              # via celery
 markuppy==1.14            # via tablib
 more-itertools==8.0.2     # via zipp
 odfpy==1.4.0              # via tablib
@@ -46,7 +43,6 @@ pygments==2.5.2           # via ipython
 python-decouple==3.3
 pytz==2019.3              # via celery, django
 pyyaml==5.2               # via tablib
-redis==3.3.11             # via celery
 sentry-sdk==0.13.5
 six==1.13.0               # via traitlets
 sqlparse==0.3.0           # via django
