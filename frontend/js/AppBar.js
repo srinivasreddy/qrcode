@@ -1,4 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
+import BusinessIcon from '@material-ui/icons/Business';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -27,7 +28,7 @@ export function MyAppBar() {
     <AppBar position="static">
       <Toolbar>
         <IconButton aria-label="menu" className={classes.menuButton} color="inherit" edge="start">
-          <MenuIcon />
+          <BusinessIcon />
         </IconButton>
         <Typography className={classes.title} variant="h6">
           QR Code Generator
