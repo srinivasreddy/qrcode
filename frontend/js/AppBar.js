@@ -6,11 +6,21 @@ import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+
 const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
 }));
 
-export function MyComponent() {
+export function MyAppBar() {
   const classes = useStyles();
 
   return (
@@ -25,4 +35,5 @@ export function MyComponent() {
         <Button color="inherit">Login</Button>
       </Toolbar>
     </AppBar>
-)}
+  );
+}
