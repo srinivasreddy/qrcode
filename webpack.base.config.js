@@ -5,7 +5,7 @@ const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = [
   {
-    entry: ['./frontend/js/jquery-index.js'],
+    entry: ['./frontend/js/entry.js'],
     output: {
       path: path.resolve('./frontend/bundles/'),
       filename: 'bundle-jquery.js',
