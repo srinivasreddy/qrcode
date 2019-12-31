@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(10),
     },
   },
+  textfield: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
   button: {
     '& > *': {
       margin: theme.spacing(4),
@@ -24,8 +29,18 @@ export default function QRCodeForm() {
     <div className={classes.root}>
       <form autoComplete="off" className={classes.root} noValidate>
         <FormControl>
-          <TextField id="outlined-basic" label="Product Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Batch Number" variant="outlined" />
+          <TextField
+            className={classes.textfield}
+            id="outlined-basic"
+            label="Product Name"
+            variant="outlined"
+          />
+          <TextField
+            className={classes.textfield}
+            id="outlined-basic"
+            label="Batch Number"
+            variant="outlined"
+          />
           {/* <MyKeyboardDatePicker /> */}
           <div className={classes.button}>
             <Button color="primary" type="submit" variant="contained">
