@@ -44,9 +44,7 @@ LOGGING = {
             "formatter": "standard",
         },
     },
-    "loggers": {
-        "": {"handlers": ["console"], "level": "INFO"},
-    },
+    "loggers": {"": {"handlers": ["console"], "level": "INFO"},},
 }
 
 JS_REVERSE_JS_MINIFY = False
