@@ -1,6 +1,5 @@
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import MyKeyboardDatePicker from "./DatePicker";
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,9 +28,9 @@ export default function QRCodeForm() {
           <TextField id="outlined-basic" label="Batch Number" variant="outlined" />
           {/* <MyKeyboardDatePicker /> */}
           <div className={classes.button}>
-          <Button color="primary" type="submit" variant="contained">
-            Generate QR Code
-          </Button>
+            <Button color="primary" type="submit" variant="contained">
+              Generate QR Code
+            </Button>
           </div>
         </FormControl>
       </form>
