@@ -8,7 +8,12 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(30),
+      margin: theme.spacing(10),
+    },
+  },
+  button: {
+    '& > *': {
+      margin: theme.spacing(4),
     },
   },
 }));
@@ -17,22 +22,19 @@ export default function QRCodeForm() {
   const classes = useStyles();
 
   return (
-    <form autoComplete="off" className={classes.root} noValidate>
-      <FormControl>
-        <TextField id="outlined-basic" label="Product Name" variant="outlined" />
-        <TextField id="outlined-basic" label="Batch Number" variant="outlined" />
-        {/* <MyKeyboardDatePicker /> */}
-        <Button
-          color="primary"
-          variant="contained"
-          onClick={() => {
-            // eslint-disable-next-line no-console
-            console.log('this is clicked');
-          }}
-        >
-          Generate QR Code
-        </Button>
-      </FormControl>
-    </form>
+    <div className={classes.root}>
+      <form autoComplete="off" className={classes.root} noValidate>
+        <FormControl>
+          <TextField id="outlined-basic" label="Product Name" variant="outlined" />
+          <TextField id="outlined-basic" label="Batch Number" variant="outlined" />
+          {/* <MyKeyboardDatePicker /> */}
+          <div className={classes.button}>
+          <Button color="primary" type="submit" variant="contained">
+            Generate QR Code
+          </Button>
+          </div>
+        </FormControl>
+      </form>
+    </div>
   );
 }
