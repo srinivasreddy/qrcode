@@ -1,5 +1,4 @@
 /* eslint-disable  unicorn/no-abusive-eslint-disable */
-import 'bootstrap-includes';
 import '../sass/style.scss';
 
 import App from './App';
