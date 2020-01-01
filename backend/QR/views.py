@@ -9,8 +9,4 @@ class QRCodeCreate(CreateView):
     fields = [
         "batch_number",
         "product_name",
-        "qr_code",
-        "qr_code_svg",
-        "qr_code_pdf",
-        "qr_code_jpg",
     ]
