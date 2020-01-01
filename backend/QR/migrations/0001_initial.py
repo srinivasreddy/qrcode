@@ -9,25 +9,46 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='QRCode',
+            name="QRCode",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', model_utils.fields.AutoCreatedField(db_index=True, default=django.utils.timezone.now, editable=False, verbose_name='created')),
-                ('modified', model_utils.fields.AutoLastModifiedField(db_index=True, default=django.utils.timezone.now, editable=False, verbose_name='modified')),
-                ('batch_number', models.CharField(max_length=100)),
-                ('product_name', models.CharField(max_length=1000)),
-                ('qr_code', models.BinaryField()),
-                ('qr_code_svg', models.BinaryField()),
-                ('qr_code_pdf', models.BinaryField()),
-                ('qr_code_jpg', models.BinaryField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    model_utils.fields.AutoCreatedField(
+                        db_index=True,
+                        default=django.utils.timezone.now,
+                        editable=False,
+                        verbose_name="created",
+                    ),
+                ),
+                (
+                    "modified",
+                    model_utils.fields.AutoLastModifiedField(
+                        db_index=True,
+                        default=django.utils.timezone.now,
+                        editable=False,
+                        verbose_name="modified",
+                    ),
+                ),
+                ("batch_number", models.CharField(max_length=100)),
+                ("product_name", models.CharField(max_length=1000)),
+                ("qr_code", models.BinaryField()),
+                ("qr_code_svg", models.BinaryField()),
+                ("qr_code_pdf", models.BinaryField()),
+                ("qr_code_jpg", models.BinaryField()),
             ],
-            options={
-                'abstract': False,
-            },
+            options={"abstract": False,},
         ),
     ]
