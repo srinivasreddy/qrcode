@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 import QRCodeForm from './InputForm';
 
-export function MySimpleContainer() {
+export function MyFooter() {
   return (
     <>
       <CssBaseline />

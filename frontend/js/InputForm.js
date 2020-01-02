@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import DjangoCSRFToken from 'django-react-csrftoken'
+import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
@@ -28,8 +28,8 @@ export default function QRCodeForm() {
 
   return (
     <div className={classes.root}>
-      <DjangoCSRFToken />
       <form autoComplete="off" className={classes.root} method="post" noValidate>
+        <DjangoCSRFToken />
         <FormControl>
           <TextField
             className={classes.textfield}
