@@ -1,10 +1,12 @@
 import Button from '@material-ui/core/Button';
 import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
+import PropTypes from 'prop-types';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default class QRCodeForm extends React.Component {
-  constructor() {
-    super();
+export class QRCodeForm extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       productName: '',
       batchNumber: '',
@@ -89,3 +91,9 @@ export default class QRCodeForm extends React.Component {
     );
   }
 }
+
+QRCodeForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(QRCodeForm);
