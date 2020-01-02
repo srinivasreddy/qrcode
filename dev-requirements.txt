@@ -14,7 +14,7 @@ click==7.0                # via safety
 coverage==5.0.1
 django-naomi==0.8
 django==2.2.9
-dodgy==0.1.9              # via prospector
+dodgy==0.2.1              # via prospector
 dparse==0.4.1             # via safety
 gitdb2==2.0.6             # via gitpython
 gitpython==3.0.5          # via bandit

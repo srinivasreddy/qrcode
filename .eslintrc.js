@@ -11,6 +11,9 @@ module.exports = {
     jest: true
   },
   settings: {
+    react: {
+      version: require('./package.json').dependencies.react
+    },
     'import/resolver': {
       webpack: {
         config: path.join(__dirname, '/webpack.local.config.js'),
