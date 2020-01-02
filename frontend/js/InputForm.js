@@ -1,8 +1,10 @@
 import Button from '@material-ui/core/Button';
 import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
+import { QRCodeSVG } from './QRCodeSVG';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,34 +25,68 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QRCodeForm() {
-  const classes = useStyles();
+export default class QRCodeForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      productName: '',
+      batchNumber: '',
+      svgBinary: '',
+      svgUrl: '',
+      svgPdf: '',
+      svgPrint: '',
+    };
+  }
 
-  return (
-    <div className={classes.root}>
-      <form autoComplete="off" className={classes.root} method="post" noValidate>
-        <DjangoCSRFToken />
-        <FormControl>
-          <TextField
-            className={classes.textfield}
-            id="outlined-basic"
-            label="Product Name"
-            variant="outlined"
-          />
-          <TextField
-            className={classes.textfield}
-            id="outlined-basic"
-            label="Batch Number"
-            variant="outlined"
-          />
-          {/* <MyKeyboardDatePicker /> */}
-          <div className={classes.button}>
-            <Button color="primary" type="submit" variant="contained">
-              Generate QR Code
-            </Button>
-          </div>
-        </FormControl>
-      </form>
-    </div>
-  );
+  handleOnSubmit(e) {
+    e.preventDefault();
+    const url = window.location.href;
+    const { productName, batchNumber } = this.state;
+    const response =  (async () => {
+      return await axios.post(url, { productName, batchNumber});
+    });
+    const { svgBinary, svgUrl, svgPdf, svgPrint } = response.data;
+    this.setState({ svgBinary, svgPrint, svgUrl, svgPdf });
+  }
+
+  handleBatchNumberChange(e) {
+    this.setState({ batchNumber: e.target.value });
+  }
+
+  handleProductNameChange(e) {
+    this.setState({ productName: e.target.value });
+  }
+
+  render() {
+    const classes = useStyles();
+    return (
+      <div className={classes.root}>
+        <form autoComplete="off" className={classes.root} noValidate onSubmit={this.handleOnSubmit}>
+          <DjangoCSRFToken />
+          <FormControl>
+            <TextField
+              className={classes.textfield}
+              id="outlined-basic"
+              label="Product Name"
+              variant="outlined"
+              onChange={this.handleProductNameChange}
+            />
+            <TextField
+              className={classes.textfield}
+              id="outlined-basic"
+              label="Batch Number"
+              variant="outlined"
+              onChange={this.handleBatchNumberChange}
+            />
+            {/* <MyKeyboardDatePicker /> */}
+            <div className={classes.button}>
+              <Button color="primary" type="submit" variant="contained">
+                Generate QR Code
+              </Button>
+            </div>
+          </FormControl>
+        </form>
+      </div>
+    );
+  }
 }
