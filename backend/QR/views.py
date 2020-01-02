@@ -26,6 +26,7 @@ class QRCodeCreate(CreateView):
 
     def post(self, *args, **kwargs):
         super(QRCodeCreate, self).post(request)
-        batch_number = self.request.POST["batch_number"]
-        product_name = self.request.POST["product_name"]
+        batch_number = self.request.POST["batchNumber"]
+        product_name = self.request.POST["productName"]
+        print(" batch number {}, product name {}".format(batch_number, product_name))
         return redirect("/")
