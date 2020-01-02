@@ -44,10 +44,6 @@ This is a good starting point for modern Python/JavaScript web projects.
 - `docker-compose up -d `
 To access the logs for each service run `docker-compose logs -f service_name` (either backend, frontend, etc)
 
-#### Celery
-- Open a command line window and go to the project's directory
-- `workon theprojectname` or `source theprojectname/bin/activate` depending on if you are using virtualenvwrapper or just virtualenv.
-- `python manage.py celery`
 
 ### Testing
 `make test`
@@ -61,36 +57,6 @@ Add the libname to either requirements.in or dev-requirents.in, then either upgr
 `pip-compile requirements.in > requirements.txt` or `make upgrade`
 `pip install -r requirements.txt`
 
-## Deployment 
-### Setup
-This project comes with a `app.json` file for heroku, that can be used to create an app on heroku from a GitHub repository.
-
-After setting up the project, you can init a repository and push it on GitHub. If your repository is public, you can use the following button:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) 
-
-If you are in a private repository, access the following link replacing `$YOUR_REPOSITORY_LINK$` with your repository link.
-
-- `https://heroku.com/deploy?template=$YOUR_REPOSITORY_LINK$`
-
-Remember to fill the `ALLOWED_HOSTS` with the URL of your app, the default on heroku is `appname.herokuapp.com`. Replace `appname` with your heroku app name.
-
 ## Linting
 - Manually with `prospector` and `npm run lint` on project root.
 - During development with an editor compatible with prospector and ESLint.
-
-## Pre-commit hooks
-- Run `pre-commit install` to enable the hook into your git repo. The hook will run automatically for each commit.
-- Run `git commit -m "Your message" -n` to skip the hook if you need.
-
-## Opinionated Settings
-Some settings defaults were decided based on Vinta's experiences. Here's the rationale behind them:
-
-### `CELERY_ACKS_LATE = True`
-We believe Celery tasks should be idempotent. So for us it's safe to set `CELERY_ACKS_LATE = True` to ensure tasks will be re-queued after a worker failure. Check Celery docs on ["Should I use retry or acks_late?"](https://docs.celeryproject.org/en/latest/faq.html#should-i-use-retry-or-acks-late) for more info.
-
-## Commercial Support
-This project, as other Vinta open-source projects, is used in products of Vinta clients. We are always looking for exciting work, so if you need any commercial support, feel free to get in touch: contact@vinta.com.br
-
-Copyright (c) 2018 Vinta Serviços e Soluções Tecnológicas Ltda.
-[MIT License](LICENSE.txt)
