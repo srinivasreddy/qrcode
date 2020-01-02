@@ -61,22 +61,22 @@ export default class QRCodeForm extends React.Component {
     const classes = useStyles();
     return (
       <div className={classes.root}>
-        <form autoComplete="off" className={classes.root} noValidate onSubmit={this.handleOnSubmit}>
+        <form autoComplete="off" className={classes.root} noValidate >
           <DjangoCSRFToken />
-          <FormControl>
+          <FormControl onSubmit={handleOnSubmit}>
             <TextField
               className={classes.textfield}
               id="outlined-basic"
               label="Product Name"
               variant="outlined"
-              onChange={this.handleProductNameChange}
+              onChange={handleProductNameChange}
             />
             <TextField
               className={classes.textfield}
               id="outlined-basic"
               label="Batch Number"
               variant="outlined"
-              onChange={this.handleBatchNumberChange}
+              onChange={handleBatchNumberChange}
             />
             {/* <MyKeyboardDatePicker /> */}
             <div className={classes.button}>
