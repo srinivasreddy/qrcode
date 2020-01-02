@@ -96,4 +96,4 @@ QRCodeForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(QRCodeForm);
+export default withStyles(useStyles)(QRCodeForm);
