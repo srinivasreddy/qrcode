@@ -1,3 +1,5 @@
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
 import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
@@ -5,8 +7,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export class QRCodeForm extends React.Component {
+class QRCodeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,17 +37,29 @@ export class QRCodeForm extends React.Component {
       svgPdf: '',
       svgPrint: '',
     };
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.handleBatchNumberChange = this.handleBatchNumberChange.bind(this);
+    this.handleProductNameChange = this.handleProductNameChange.bind(this);
   }
 
   handleOnSubmit(e) {
     e.preventDefault();
-    const url = window.location.href;
     const { productName, batchNumber } = this.state;
-    const response =  (async () => {
-      return await axios.post(url, { productName, batchNumber});
-    });
+    const url = window.location.href;
+    const response = axios
+      .post(url, { productName, batchNumber })
+      .then((resp) => {
+        console.log(`Success${resp.toString()}`);
+        return resp;
+      })
+      .catch((e) => {
+        console.log(`error${e.toString()}`);
+      });
+    // const response = { svgBinary: 1, svgUrl: 2, svgPdf: 3, svgPrint: 4 };
     const { svgBinary, svgUrl, svgPdf, svgPrint } = response.data;
     this.setState({ svgBinary, svgPrint, svgUrl, svgPdf });
+    // eslint-disable-next-line no-console
+    console.dir(this.state, { depth: null, colors: true });
   }
 
   handleBatchNumberChange(e) {
@@ -59,29 +71,34 @@ export class QRCodeForm extends React.Component {
   }
 
   render() {
-    const classes = useStyles();
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <form autoComplete="off" className={classes.root} noValidate >
+        <form autoComplete="off" className={classes.root} noValidate>
           <DjangoCSRFToken />
-          <FormControl onSubmit={handleOnSubmit}>
+          <FormControl>
             <TextField
               className={classes.textfield}
               id="outlined-basic"
               label="Product Name"
               variant="outlined"
-              onChange={handleProductNameChange}
+              onChange={this.handleProductNameChange}
             />
             <TextField
               className={classes.textfield}
               id="outlined-basic"
               label="Batch Number"
               variant="outlined"
-              onChange={handleBatchNumberChange}
+              onChange={this.handleBatchNumberChange}
             />
             {/* <MyKeyboardDatePicker /> */}
             <div className={classes.button}>
-              <Button color="primary" type="submit" variant="contained">
+              <Button
+                color="primary"
+                type="submit"
+                variant="contained"
+                onClick={this.handleOnSubmit}
+              >
                 Generate QR Code
               </Button>
             </div>
