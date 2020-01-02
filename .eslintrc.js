@@ -12,7 +12,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: require('./package.json').dependencies.react
+      version: "16.9.0"
     },
     'import/resolver': {
       webpack: {
