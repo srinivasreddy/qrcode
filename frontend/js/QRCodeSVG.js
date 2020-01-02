@@ -1,14 +1,9 @@
 import React from 'react';
 
 export class QRCodeSVG extends React.Component {
-  componentDidMount() {
-    return null;
-  }
 
   render() {
-    const { imageSource } = this.state;
-    if (!imageSource.length) return null;
-
-    return <img alt="QRCodeSVG" className="images" src="asdasd" />;
+    return (<div><p>Wilkommen</p></div>);
+    // <img alt="QRCodeSVG" className="images" src="asdasd" />;
   }
 }
