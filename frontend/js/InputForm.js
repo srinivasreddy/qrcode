@@ -4,9 +4,13 @@ import Button from '@material-ui/core/Button';
 import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
 import PropTypes from 'prop-types';
+import { QRCode } from "./QRCode";
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,19 +41,20 @@ class QRCodeForm extends React.Component {
       svgPdf: '',
       svgPrint: '',
     };
-    this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleBatchNumberChange = this.handleBatchNumberChange.bind(this);
     this.handleProductNameChange = this.handleProductNameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleOnSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
     const { productName, batchNumber } = this.state;
     const url = window.location.href;
     const response = axios
       .post(url, { productName, batchNumber })
       .then((resp) => {
-        console.log(`Success${resp.toString()}`);
+        const { svgBinary } = resp.data;
+        this.setState({ svgBinary });
         return resp;
       })
       .catch((e) => {
@@ -72,15 +77,18 @@ class QRCodeForm extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { batchNumber, productName, svgBinary } = this.state;
     return (
       <div className={classes.root}>
-        <form autoComplete="off" className={classes.root} noValidate>
+        <form autoComplete="off" className={classes.root} method="post" noValidate>
           <DjangoCSRFToken />
           <FormControl>
             <TextField
               className={classes.textfield}
               id="outlined-basic"
               label="Product Name"
+              name="productName"
+              value={productName}
               variant="outlined"
               onChange={this.handleProductNameChange}
             />
@@ -88,20 +96,17 @@ class QRCodeForm extends React.Component {
               className={classes.textfield}
               id="outlined-basic"
               label="Batch Number"
+              name="batchNumber"
+              value={batchNumber}
               variant="outlined"
               onChange={this.handleBatchNumberChange}
             />
-            {/* <MyKeyboardDatePicker /> */}
             <div className={classes.button}>
-              <Button
-                color="primary"
-                type="submit"
-                variant="contained"
-                onClick={this.handleOnSubmit}
-              >
+              <Button color="primary" type="submit" variant="contained" onClick={this.handleSubmit}>
                 Generate QR Code
               </Button>
             </div>
+            {svgBinary !== '' && <QRCode svgBinary={svgBinary} />}
           </FormControl>
         </form>
       </div>

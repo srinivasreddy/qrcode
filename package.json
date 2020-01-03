@@ -8,9 +8,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "start": "babel-node server.js",
+    "start": "NODE_ENV=development webpack -p --progress --colors --config webpack.local.config.js --bail",
     "prod": "NODE_ENV=production webpack -p --progress --colors --config webpack.prod.config.js --bail",
-
     "build": "NODE_ENV=development webpack -p --progress --colors --config webpack.prod.config.js --bail",
     "lint": "eslint frontend",
     "coverage": "jest --coverage"
