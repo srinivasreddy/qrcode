@@ -91,7 +91,8 @@
     "mini-css-extract-plugin": "~0.8.0",
     "prettier": "~1.18.2",
     "redux-mock-store": "~1.5.3",
-    "webpack-cli": "~3.3.2"
+    "webpack-cli": "~3.3.2",
+    "why-did-you-update": "^1.0.6"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
