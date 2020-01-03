@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "qrcode.urls"
+ROOT_URLCONF = "qrgenerator.urls"
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "qrcode.wsgi.application"
+WSGI_APPLICATION = "qrgenerator.wsgi.application"
 
 AUTH_PASSWORD_VALIDATORS = [
     {

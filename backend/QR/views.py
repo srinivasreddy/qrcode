@@ -1,8 +1,11 @@
+import json
+
 from django.http import request
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 
 import qrcode
+
 from QR.models import QRCode
 
 
@@ -16,7 +19,7 @@ class QRCodeCreate(CreateView):
     def _make_qr_code(self, batch_number, product_name):
         qr = qrcode.QRCode(
             version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            error_correction=qrgenerator.constants.ERROR_CORRECT_L,
             box_size=10,
             border=4,
         )
@@ -26,7 +29,6 @@ class QRCodeCreate(CreateView):
 
     def post(self, *args, **kwargs):
         super(QRCodeCreate, self).post(request)
-        batch_number = self.request.POST["batchNumber"]
-        product_name = self.request.POST["productName"]
-        print(" batch number {}, product name {}".format(batch_number, product_name))
+        data = json.loads(self.request.body.decode("utf-8"))
+        svg = self._make_qr_code(data["batchNumber"], data["productName"])
         return redirect("/")
