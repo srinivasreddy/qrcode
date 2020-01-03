@@ -1,10 +1,13 @@
+import base64
 import json
+from io import BytesIO
 
-from django.http import request
+from django.http import JsonResponse, request
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 
 import qrcode
+import qrcode.image.svg
 
 from QR.models import QRCode
 
@@ -17,18 +20,16 @@ class QRCodeCreate(CreateView):
     ]
 
     def _make_qr_code(self, batch_number, product_name):
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrgenerator.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        qr.add_data("Some data")
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
+        data = batch_number + "-" + product_name
+        return qrcode.make(data, image_factory=qrcode.image.svg.SvgImage)
 
     def post(self, *args, **kwargs):
         super(QRCodeCreate, self).post(request)
         data = json.loads(self.request.body.decode("utf-8"))
         svg = self._make_qr_code(data["batchNumber"], data["productName"])
-        return redirect("/")
+        b = BytesIO()
+        svg.save(b)
+        # import pdb; pdb.set_trace()
+        return JsonResponse(
+            {"svgBinary": base64.encodestring(b.getvalue()).decode("utf-8")}
+        )

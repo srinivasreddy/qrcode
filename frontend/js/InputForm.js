@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import DjangoCSRFToken from 'django-react-csrftoken';
 import FormControl from '@material-ui/core/FormControl';
 import PropTypes from 'prop-types';
-import { QRCode } from "./QRCode";
+import QRCode  from './QRCode';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
@@ -50,7 +50,7 @@ class QRCodeForm extends React.Component {
     e.preventDefault();
     const { productName, batchNumber } = this.state;
     const url = window.location.href;
-    const response = axios
+    const resp = axios
       .post(url, { productName, batchNumber })
       .then((resp) => {
         const { svgBinary } = resp.data;
@@ -60,11 +60,7 @@ class QRCodeForm extends React.Component {
       .catch((e) => {
         console.log(`error${e.toString()}`);
       });
-    // const response = { svgBinary: 1, svgUrl: 2, svgPdf: 3, svgPrint: 4 };
-    const { svgBinary, svgUrl, svgPdf, svgPrint } = response.data;
-    this.setState({ svgBinary, svgPrint, svgUrl, svgPdf });
-    // eslint-disable-next-line no-console
-    console.dir(this.state, { depth: null, colors: true });
+    console.log(JSON.stringify(`${resp}`));
   }
 
   handleBatchNumberChange(e) {
