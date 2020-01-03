@@ -13,7 +13,7 @@ class QRCodeCreate(CreateView):
         "product_name",
     ]
 
-    def _make_qr_code(self):
+    def _make_qr_code(self, batch_number, product_name):
         qr = qrcode.QRCode(
             version=1,
             error_correction=qrcode.constants.ERROR_CORRECT_L,
