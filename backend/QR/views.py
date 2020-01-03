@@ -21,7 +21,8 @@ class QRCodeCreate(CreateView):
 
     def _make_qr_code(self, batch_number, product_name):
         data = batch_number + "-" + product_name
-        return qrcode.make(data, image_factory=qrcode.image.svg.SvgImage)
+        data = "https://google.com"
+        return qrcode.make(data, version=10, image_factory=qrcode.image.svg.SvgPathFillImage)
 
     def post(self, *args, **kwargs):
         super(QRCodeCreate, self).post(request)
