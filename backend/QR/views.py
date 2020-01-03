@@ -29,7 +29,6 @@ class QRCodeCreate(CreateView):
         svg = self._make_qr_code(data["batchNumber"], data["productName"])
         b = BytesIO()
         svg.save(b)
-        # import pdb; pdb.set_trace()
         return JsonResponse(
             {"svgBinary": base64.encodestring(b.getvalue()).decode("utf-8")}
         )
