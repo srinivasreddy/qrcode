@@ -15,7 +15,7 @@ axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      margin: theme.spacing(10),
+      margin: theme.spacing(1),
     },
   },
   textfield: {
@@ -44,6 +44,7 @@ class QRCodeForm extends React.Component {
     this.handleBatchNumberChange = this.handleBatchNumberChange.bind(this);
     this.handleProductNameChange = this.handleProductNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClearQRCode = this.handleClearQRCode.bind(this);
   }
 
   handleSubmit(e) {
@@ -67,6 +68,10 @@ class QRCodeForm extends React.Component {
     this.setState({ batchNumber: e.target.value });
   }
 
+  handleClearQRCode(e) {
+    this.setState({ svgBinary: '' });
+  }
+
   handleProductNameChange(e) {
     this.setState({ productName: e.target.value });
   }
@@ -75,7 +80,7 @@ class QRCodeForm extends React.Component {
     const { classes } = this.props;
     const { batchNumber, productName, svgBinary } = this.state;
     return (
-      <div className={classes.root}>
+      <div>
         <form autoComplete="off" className={classes.root} method="post" noValidate>
           <DjangoCSRFToken />
           <FormControl>
@@ -102,8 +107,23 @@ class QRCodeForm extends React.Component {
             />
             <br />
             <div className={classes.button}>
-              <Button color="primary" type="submit" variant="contained" onClick={this.handleSubmit}>
+              <Button
+                className={classes.button}
+                color="primary"
+                type="submit"
+                variant="contained"
+                onClick={this.handleSubmit}
+              >
                 Generate QR Code
+              </Button>
+              &nbsp; &nbsp;
+              <Button
+                className={classes.button}
+                color="secondary"
+                variant="contained"
+                onClick={this.handleClearQRCode}
+              >
+                Clear QR Code
               </Button>
             </div>
             {svgBinary !== '' && <QRCode svgBinary={svgBinary} />}
