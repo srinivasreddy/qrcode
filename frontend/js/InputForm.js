@@ -79,6 +79,8 @@ class QRCodeForm extends React.Component {
         <form autoComplete="off" className={classes.root} method="post" noValidate>
           <DjangoCSRFToken />
           <FormControl>
+            <br/>
+            <br/>
             <TextField
               className={classes.textfield}
               id="outlined-basic"
@@ -88,6 +90,7 @@ class QRCodeForm extends React.Component {
               variant="outlined"
               onChange={this.handleProductNameChange}
             />
+            <br />
             <TextField
               className={classes.textfield}
               id="outlined-basic"
@@ -97,6 +100,7 @@ class QRCodeForm extends React.Component {
               variant="outlined"
               onChange={this.handleBatchNumberChange}
             />
+            <br />
             <div className={classes.button}>
               <Button color="primary" type="submit" variant="contained" onClick={this.handleSubmit}>
                 Generate QR Code
